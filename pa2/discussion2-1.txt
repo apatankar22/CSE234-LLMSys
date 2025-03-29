@@ -1,0 +1,22 @@
+Put discussion here for 2.1
+<<<<<<< HEAD
+
+MyAllReduce
+Summary over 100 runs:
+All runs produced correct results.
+Average MPI.Allreduce time: 0.000920 seconds
+Average myAllreduce time:   0.000597 seconds
+
+
+MyAllToAll
+Summary over 100 runs:
+All runs produced correct results.
+Average MPI.Alltoall time: 0.000584 seconds
+Average myAlltoall time:   0.000423 seconds
+
+A few things stood out to me while looking at the times for my implementation vs MPI. First, I see that if I rerun the 100 run MyAllReduce, I see a speedup that ranging from 2x all the way to 6x. Secondly, I noted that the runtime between the two implementations as highly variant, as doing 10 vs 50 vs 100 vs 500 runs had inconsistent results. This, of course, is due to various dynamic effects that occur for each set of runs. I think my AllReduce was quicker than MPI because I used Reduce, then Broadcast, and so, it may be more efficient as compared to the traditional AllReduce. 
+
+
+A similar thing occurs with my AllToAll implementation. In some cases, I see a speedup of more than 1.5x, but in some cases, my implementation is slower than the MPI implementation. This tells me that my AllToAll may not be as efficient, and that may be due to overhead from doing the receives and sends sequentially rather than simultaneously. HOWEVER, when we change the # of runs to 1000, my AllToAll is more efficient every single time. I think this is because the same overhead of creating requests, creating buffers, etc. is averaged/amortized out across 1000 run as opposed to 100, meaning a less of a performance hit per run, leading to a lower average for 1000 runs as opposed to 100.
+=======
+>>>>>>> f2aa5d6d86b994dee5b2afc848ad8a48bcd0e50f

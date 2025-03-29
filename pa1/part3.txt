@@ -1,0 +1,5 @@
+Operator fusion is a complex, and creative way to improve performance, by fusing, as the name suggets, two operators together in order to reduce memory overhead. Typically, at least one of the operators is an activation function; fused operators are incredibly useful in domains like ML, DL, and even HPC. 
+
+Fused operators improve efficiency by optimizing performance, namely, the memory overhead. Fused operations performed independently (eg. convolution, then ReLU) require hardware (eg. GPU) to wait for the results of the first operation, and then perform the second operation. In fusing operators, we compute the second operation without waiting for the first to complete, improving efficiency.
+
+Future improvements to fused operators may include optimizations specific to HW, for example, FPGA/ASIC based HW that supports a broader range of fused ops.

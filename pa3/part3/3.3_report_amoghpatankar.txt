@@ -1,0 +1,39 @@
+In order to analyze the performance of the speculative decoding algorithm, I note the number of speculative tokens (num_speculative_tokens) and maximum tokens (max_tokens). One observation was that the more speculative tokens we use, the less improvement we see in our algorithm. This may be because the target model generates more tokens to "overcome" the draft's mistakes. Finally, I noted that as the maximum tokens increased, the algorithm generates more speculative tokens; I believe this gives more stability to the draft model, and makes the acceptance rate much higher for predictions.
+
+
+To optimize the algorithm and by extension the results, I vectorized code for token acceptance in order to improve the performance. The EleutherAI models (1.4B and 160M) performance benchmark is listed in spec_decoding_comparison.numbers file, but is also listed here:
+
+
+
+Prompt 1
+Avg Baseline Decoding Time: 2.69 secs
+Avg Baseline TPS: 37.54
+
+Average Spec Decoding TPS: 46.38
+Average Spec Decoding Time: 2.29 secs
+Avg Draft Acceptance Rate: 87.5%
+
+Speedup: 1.17x
+Latency Reduction: 14.78%
+---------------------------------------------
+Prompt 2
+Avg Baseline Decoding Time: 2.57 secs
+Avg Baseline TPS: 39.01
+
+Average Spec Decoding TPS: 54.19
+Average Spec Decoding Time: 2.11 secs
+Avg Draft Acceptance Rate: 94.17%
+
+Speedup: 1.21x
+Latency Reduction: 17.66%
+---------------------------------------------
+Prompt 3
+Avg Baseline Decoding Time: 2.65 secs
+Avg Baseline TPS: 37.87
+
+Average Spec Decoding TPS: 54.57
+Average Spec Decoding Time: 1.98 secs
+Avg Draft Acceptance Rate: 89.17%
+
+Speedup: 1.34x
+Latency Reduction: 25.14%
